@@ -1,0 +1,39 @@
+# Site settings
+title:          Harin
+description:    "Hello, I'm Harin, an engineer, and this is my corner of the internet."
+url:            https://engineeringmonkey.in/
+
+# Author
+author:
+  name:         Harin
+  email:        iamharinramesh@gmail.com
+  url:          https://engineeringmonkey.in/
+
+# Build settings
+markdown:       kramdown
+
+# Assets
+sass:
+  sass_dir:     _sass
+  style:        compressed
+
+# Gems
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  # - jemoji #Uncomment this to allow emoji in your post
+
+# Permalinks
+permalink:      /:year-:month-:day/:title
+paginate:       5
+
+# Related posts settings
+related_posts_section:
+  max_count:        5
+  min_common_tags:  2
+
+# Links to social media
+social:
+  github: https://github.com/harin-ramesh 
+  twitter: https://twitter.com/harin_ramesh 
+  linkedin: https://www.linkedin.com/in/harin-ramesh/
