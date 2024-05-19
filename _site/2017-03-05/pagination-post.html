@@ -4,17 +4,30 @@
   <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
 
-  <title>
-    
-      Pagination Post &middot; Harin
-    
-  </title>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Math behind Back-Propagation | Harin</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Math behind Back-Propagation" />
+<meta name="author" content="Harin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Today let’s demystify the secret behind back-propagation. In this post, I will try to include all Math involved in back-propagation. Familiarity with basic calculus would be great. Otherwise, I don’t recommend continuing this article." />
+<meta property="og:description" content="Today let’s demystify the secret behind back-propagation. In this post, I will try to include all Math involved in back-propagation. Familiarity with basic calculus would be great. Otherwise, I don’t recommend continuing this article." />
+<link rel="canonical" href="http://localhost:4000/2017-03-05/pagination-post" />
+<meta property="og:url" content="http://localhost:4000/2017-03-05/pagination-post" />
+<meta property="og:site_name" content="Harin" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-03-05T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Math behind Back-Propagation" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Harin"},"dateModified":"2017-03-05T00:00:00+05:30","datePublished":"2017-03-05T00:00:00+05:30","description":"Today let’s demystify the secret behind back-propagation. In this post, I will try to include all Math involved in back-propagation. Familiarity with basic calculus would be great. Otherwise, I don’t recommend continuing this article.","headline":"Math behind Back-Propagation","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2017-03-05/pagination-post"},"url":"http://localhost:4000/2017-03-05/pagination-post"}</script>
+<!-- End Jekyll SEO tag -->
+
 
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
@@ -23,121 +36,81 @@
 
   <!-- RSS -->
   <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Harin" />
+
+  <!-- Google Analytics-->
+  
 </head>
 
 
   <body>
+
     <nav class="nav">
-      <div class="nav-container">
-        <a href="/">
-          <h2 class="nav-title">Harin</h2>
-        </a>
-        <ul class="nav-social-icons">
-          
-          
-            <li><a target="_blank" href="https://github.com/harin-ramesh"><i class="fab fa-github"></i></a></li>
-          
-          
-            <li><a target="_blank" href="https://twitter.com/harin_ramesh"><i class="fab fa-twitter"></i></a></li>
-          
-          
-            <li><a target="_blank" href="https://www.linkedin.com/in/harin-ramesh/"><i class="fab fa-linkedin-in"></i></a></li>
-          
-        </ul>
-      </div>
-    </nav>
+  <div class="nav-container">
+    <a href="/">
+      <h2 class="nav-title">Harin</h2>
+    </a>
+    <ul>
+      <li><a href="/">Posts</a></li>
+      <!-- <li><a href="/tags">Tags</a></li> -->
+      <li><a href="/about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
 
     <main>
       <div class="post">
 
-  <div class="post-info">
-    
-      <time datetime="2017-03-05 00:00:00 +0530">March 05, 2017</time>
-    
-  </div>
-  <h1 class="post-title">
-    <div>Pagination Post</div>
-  </h1>
+  <h3 class="post-title">Math behind Back-Propagation</h3>
+  <div class="post-line"></div>
 
-  <p>Here we see <strong>Rain’s</strong> pagination feature in action. It is set to 5 posts per page by default. Feel free to change this number in the <code class="highlighter-rouge">_config.yml</code> file!</p>
+  <p>Today let’s demystify the secret behind back-propagation. In this post, I will try to include all Math involved in back-propagation. Familiarity with basic calculus would be great. Otherwise, I don’t recommend continuing this article.</p>
 
+<p>Let’s start with what is back-propagation? In simple terms, it computes the derivatives of the loss function with respect to weight and biases in a neural network. Algorithms such as gradient descent or stochastic gradient descent use gradient computed through back-propagation for optimization. That’s it for the intro, let’s dive into the Math.</p>
 
-</div>
+<p>Let‘s find the derivative of the softmax, this is something that we need later. We can apply Quotient rule to find derivative, since it is in the form g(x)/h(x).</p>
 
-<div class="relatedPosts">
+<p>There will be two cases, i equal to j and not equal to j.</p>
 
-  
-    
-    
-    
-    
+<p>Till now we haven’t computed any gradient w.r.t loss, we are building to it step by step.</p>
 
-    
+<p>Let’s consider the neural network shown blow.</p>
 
-      
-      
+<p>z is the weighted sum of activation of the previous layer and corresponding weights and a is the activation of the neuron which is obtained by applying activation function to z. Now let’s look, how activation of a specific neuron is represented.</p>
 
-      
+<p>The above example represents the activation of 2nd neuron in 3 layer.</p>
 
-      
+<p>It is time to get into the meat and flesh.</p>
 
-    
+<p>Let’s find the derivative of loss w.r.t z in the output layer(l th layer). As I already mentioned, cross-entropy will be our loss.</p>
 
-      
-      
+<p>k is the number of predictions, it will be equal to the number of neurons in the output layer.</p>
 
-      
+<p>We can use the derivative of softmax that we derived earlier. One thing to remember, we need to compute the derivative of softmax k times in which k-1 times i is not equal to k.</p>
 
-      
+<p>Let’s continue our derivation considering the above network.</p>
 
-    
+<p>Now let’s find the derivative of weights with respect to loss, we will be using chain rule here.</p>
 
-      
-      
-
-      
-
-      
-
-    
-
-      
-      
-
-      
-
-      
-
-    
-
-      
-      
-
-      
-
-      
-
-    
-
-      
-      
-
-      
-
-      
-
-    
-
-    
-  
+<p>Bias units are not shown in the network, but they are present in the network.</p>
 
 </div>
 
+
+
+<div class="pagination">
+  
+  
+
+  <a href="#" class="top">Top</a>
+</div>
     </main>
 
     <footer>
-      <span>
-      </span>
-    </footer>
+  <span>
+    <!-- &copy; <time datetime="2024-05-20 00:14:57 +0530">2024</time> Harin. -->
+  </span>
+</footer>
+
   </body>
 </html>
