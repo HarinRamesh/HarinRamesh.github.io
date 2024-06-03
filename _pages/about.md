@@ -9,4 +9,4 @@ Hi there, I'm Harin. By day, I'm a software engineer, but my nights are fueled b
 
 This blog is my way of sharing my passion and learnings with all of you.
 
-PS: PS: And of course, thanks to ChatGPT for writing such an incredibly unique and original intro.
+PS: And of course, thanks to ChatGPT for writing such an incredibly unique and original intro.
